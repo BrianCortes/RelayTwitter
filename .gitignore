@@ -1,1 +1,77 @@
-node_modules/
+
+# Creado por https://www.gitignore.io/api/node,macos
+
+### ### Nodo
+# Registros
+troncos
+*.Iniciar sesión
+NPM-debug.log *
+
+Tiempo de ejecución de datos #
+Los PID
+* .pid
+*.semilla
+* .pid.lock
+
+# Guía de librerías instrumentados generados por jscoverage / JSCover
+lib-cov
+
+# directorio de cobertura utilizado por herramientas como Estambul
+cobertura
+
+# Cobertura de la prueba NYC
+.nyc_output
+
+# Ronco de almacenamiento intermedio (http://gruntjs.com/creating-plugins#storing-task-files)
+.gruñido
+
+# Configuración de nodo-WAF
+.lock-wscript
+
+# Complementos binarios compilados (http://nodejs.org/api/addons.html)
+construir / Liberación
+
+directorios # Dependencia
+node_modules
+jspm_packages
+
+# Directorio de caché opcional NPM
+.npm
+
+# Caché opcional eslint
+.eslintcache
+
+# Historia Opcional REPL
+.node_repl_history
+
+# La producción de "paquete de NPM '
+* .tgz
+
+# Archivo de hilado Integridad
+.yarn en la fe
+
+
+
+### Mac OS ###
+* .DS_Store
+.AppleDouble
+.LSOverride
+
+# Icono debe terminar con dos \ r
+Icono
+# miniaturas
+._ *
+# Archivos que pueden aparecer en la raíz de un volumen
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+# Directorios potencialmente crean en proporción a distancia AFP
+.AppleDB
+.AppleDesktop
+Carpeta Papelera Red
+Los productos temporales
+.apdisk
