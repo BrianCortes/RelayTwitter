@@ -34,7 +34,7 @@ class parentContainer extends React.Component {
           onClick={value => this.userSearch(value)}>buscar
         </a>
         <Item item = { item } />
-        <Tweets tweets = { tweets } userSearch={this.userSearch}h/>
+        <Tweets {...this.props} tweets = { tweets } userSearch={this.userSearch}h/>
       </div>
     );
   }
@@ -91,7 +91,19 @@ class Tweets extends React.Component {
   render() {
     let tweets = this.props.tweets
     debugger
-    var mapTweets = "hola"
+    var mapTweets = tweets.map((data)=>{
+      return(
+        <div className="perfilTwitter col s12">
+          <div className="userAndImg">
+            <div className="nameUser">{data.user.name}</div>
+            <img className="imgUser" src={data.user.profile_image_url} alt="Smiley face"></img>
+          </div>
+          <div className="contentInfo2">
+            "{data.text}"
+          </div>
+        </div>
+      )
+    })
 
     return (
       <div>
@@ -117,8 +129,9 @@ class Tweets extends React.Component {
     this.setState({valor: value.target.value})
   }
   valueSearch(){
-  debugger
-  this.props.userSearch(this.state.valor)
+  this.props.relay.setVariables({
+      q: this.state.valor,
+  });
   }
 };
 
@@ -140,19 +153,6 @@ parentContainer = Relay.createContainer(parentContainer, {
           tweets_count
           followers_count
         }
-        ${Tweets.getFragment('twi')},
-      }
-    `,
-  },
-});
-
-Tweets = Relay.createContainer(Tweets, {
-  initialVariables: {
-    q: "relay.js"
-  },
-  fragments: {
-    twi: () => Relay.QL`
-      fragment on TwitterAPI {
         search(q: $q, count: 10, result_type: mixed){
           user{
             name
@@ -165,16 +165,18 @@ Tweets = Relay.createContainer(Tweets, {
   },
 });
 
-class HackerNewsRoute extends Relay.Route {
+
+
+class Twitter extends Relay.Route {
   static routeName = 'HackerNewsRoute';
   static queries = {
-    store: () => {
+    store: ((Component) => {
       // Component is our Item
       return Relay.QL`
       query root {
-        twitter {  ${parentContainer.getFragment('store')}},
+        twitter { ${Component.getFragment('store')} },
       }
-    `},
+    `}),
   };
 }
 
@@ -186,7 +188,7 @@ let mountNode = document.getElementById('app');
 let rootComponent =
  <Relay.RootContainer
     Component={parentContainer}
-    route={new HackerNewsRoute()}
+    route={new Twitter()}
     renderFailure={function(error, retry) {
       return (
         <h1>fail in the aplication</h1>
