@@ -171,7 +171,7 @@ class Twitter extends Relay.Route {
   static routeName = 'HackerNewsRoute';
   static queries = {
     store: ((Component) => {
-      // Component is our Item
+      // Component is our parentContainer
       return Relay.QL`
       query root {
         twitter { ${Component.getFragment('store')} },
